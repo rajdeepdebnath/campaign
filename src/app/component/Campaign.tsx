@@ -72,7 +72,12 @@ const CampaignContainer = () => {
   //   };
   return (
     <div className="border w-2/3 m-auto mt-8 text-xl">
-      <Button color="blue" size="xs" onClick={() => setOpenModal(true)}>
+      <Button
+        color="blue"
+        size="xs"
+        onClick={() => setOpenModal(true)}
+        className="m-4"
+      >
         New Campaign
       </Button>
       <AddComponent
@@ -84,11 +89,16 @@ const CampaignContainer = () => {
         openModal={openModal}
         setOpenModal={setOpenModal}
       />
-      <CampaignList
-        campaignList={campaignList}
-        handleSetEditCampaign={handleSetEditCampaign}
-        handleDeleteCampaign={handleDeleteCampaign}
-      />
+      {campaignList.length === 0 && (
+        <div className="text-center text-lg">No campaigns available</div>
+      )}
+      {campaignList.length > 0 && (
+        <CampaignList
+          campaignList={campaignList}
+          handleSetEditCampaign={handleSetEditCampaign}
+          handleDeleteCampaign={handleDeleteCampaign}
+        />
+      )}
     </div>
   );
 };
